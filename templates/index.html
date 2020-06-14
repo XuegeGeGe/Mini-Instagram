@@ -1,5 +1,7 @@
 <div>
     {% for post in object_list %}
-        <img src="/{{post.image}}">
+        <a href="{% url 'post_detail' post.id %}">
+            <img src="/{{post.image}}">
+        </a>
     {% endfor %}
 </div>
