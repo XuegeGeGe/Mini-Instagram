@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from Insta.models import Post
 
 
@@ -21,3 +21,9 @@ class PostCreateView(CreateView):
     model = Post
     template_name = "post_create.html"
     fields = "__all__"
+
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = "post_update.html"
+    fields = ['title']
