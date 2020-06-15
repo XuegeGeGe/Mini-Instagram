@@ -1,0 +1,9 @@
+<h1>Delete a New Post</h1>
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Do you want to delete {{object.id}}?</p>
+        <button type="submit">Delete Post</button>
+    </form>
+</div>
