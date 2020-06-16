@@ -10,32 +10,37 @@ class HelloWorld(TemplateView):
     template_name = 'HelloWorld.html'
 
 
-class PostsView(ListView, LoginRequiredMixin):
+class PostsView(LoginRequiredMixin, ListView):
     model = Post
     template_name = "index.html"
+    login_url = 'login'
 
 
-class PostDetailView(DetailView, LoginRequiredMixin):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     template_name = "post_detail.html"
+    login_url = "login"
 
 
-class PostCreateView(CreateView, LoginRequiredMixin):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = "post_create.html"
     fields = "__all__"
+    login_url = "login"
 
 
-class PostUpdateView(UpdateView, LoginRequiredMixin):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = "post_update.html"
     fields = ['title']
+    login_url = "login"
 
 
-class PostDeleteView(DeleteView, LoginRequiredMixin):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = "post_delete.html"
     success_url = reverse_lazy('posts')
+    login_url = "login"
 
 
 class SignUpView(CreateView):
