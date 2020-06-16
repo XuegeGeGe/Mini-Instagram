@@ -1,4 +1,24 @@
-<a href="{% url 'post_create' %}">Create a Post</a>
+<ul>
+    {% if request.user.is_authenticated %}
+        <li>
+            Hi, {{request.user.username}}
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">Logout</a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{% url 'login' %}">Login</a>
+        </li>
+        <li>
+            <a href="{% url 'helloworld' %}">Signup</a>
+        </li>
+    {% endif %}
+</ul>
+
+<div>
+    <a href="{% url 'post_create' %}">Create a Post</a>
+</div>
 
 <div>
     {% for post in object_list %}
