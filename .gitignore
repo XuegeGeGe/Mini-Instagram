@@ -1,4 +1,5 @@
 __pycache__/
 *.py[cod]
-static
+static/users
+static/posts
 db.sqlite3
