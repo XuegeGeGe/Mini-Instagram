@@ -22,13 +22,13 @@
                 <a href="{% url 'post_detail' post.pk %}">
                     <img class="card__main-image" src="/{{ post.image.url }}">
                 </a>
-                {% comment %}<div class="card__panel-body">
+                <div class="card__panel-body">
                     <div class="likes">
                         {% if post.get_like_count %}
                             {{ post.get_like_count }} like{% if post.get_like_count > 1 %}s{% endif %}
                         {% endif %}
                     </div>
-                    <ul class="comment-list">
+                    {% comment %}<ul class="comment-list">
                         <a class="view-more"></a>
                         {% for comment in post.comments.all %}
                         <li class="comment-list__comment">
@@ -47,8 +47,8 @@
                         <div class="hidden-data {{ post.pk }}" style="display: none;">
                             <span class="post-pk">{{ post.pk }}</span>
                         </div>
-                    </section>
-                </div> {% endcomment %}
+                    </section> {% endcomment %}
+                </div>
             </div>
         </div>
     {% endfor %}
