@@ -27,3 +27,24 @@ class InstaUser(AbstractUser):
         blank=True,
         null=True
     )
+
+
+class Like(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(InstaUser, on_delete=models.CASCADE, related_name='likes')
+
+    class Meta:
+        unique_together = ('post', 'user')
+
+    def __str__(self):
+        return 'Like: ' + self.user.username + '->' + self.post.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(InstaUser, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=100)
+    posted_on = models.DateTimeField(auto_now_add=True, editable=False)
+
+    def __str__(self):
+        return 'Comment: ' + self.user.username + '->' + self.post.title + ': ' + self.comment
