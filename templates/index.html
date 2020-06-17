@@ -20,7 +20,7 @@
                     </div>
                 </div>  {% endcomment %}
                 <a href="{% url 'post_detail' post.pk %}">
-                    <img class="card__main-image" src="{{ post.image.url }}">
+                    <img class="card__main-image" src="/{{ post.image }}">
                 </a>
                 {% comment %}<div class="card__panel-body">
                     <div class="likes">
