@@ -6,11 +6,11 @@
     {% for post in object_list %}
         <div class="row">
             <div class="card view-update {{ post.pk }}">
-                {% comment %} <div class="card__panel-head">
+                <div class="card__panel-head">
                     <div class="poster__info">
-                        <a href="{% url 'profile' post.author.pk %}" class="poster__name">
+                        <a href="{% url 'helloworld' %}" class="poster__name">
                             {% if post.author.profile_pic %}
-                                <img class="poster__profilepic" src="{{ post.author.profile_pic.url }}">
+                                <img class="poster__profilepic" src="/{{ post.author.profile_pic.url }}">
                             {% endif %}
                             {{ post.author.username }}
                         </a>
@@ -18,9 +18,9 @@
                             {{ post.posted_on|timesince }}
                         </span>
                     </div>
-                </div>  {% endcomment %}
+                </div>
                 <a href="{% url 'post_detail' post.pk %}">
-                    <img class="card__main-image" src="/{{ post.image }}">
+                    <img class="card__main-image" src="/{{ post.image.url }}">
                 </a>
                 {% comment %}<div class="card__panel-body">
                     <div class="likes">
