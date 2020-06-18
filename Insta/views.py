@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from Insta.forms import InstaUserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from Insta.models import Post, Like
+from Insta.models import InstaUser, Post, Like
 
 
 class HelloWorld(TemplateView):
@@ -48,6 +48,12 @@ class SignUpView(CreateView):
     form_class = InstaUserCreationForm
     template_name = "signup.html"
     success_url = reverse_lazy('login')
+
+
+class UserDetailView(LoginRequiredMixin, DetailView):
+    model = InstaUser
+    template_name = "user_detail.html"
+    login_url = "login"
 
 
 @ajax_request

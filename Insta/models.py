@@ -14,6 +14,33 @@ class InstaUser(AbstractUser):
         null=True
     )
 
+    def get_connections(self):
+        connections = UserConnection.objects.filter(creator=self)
+        return connections
+
+    def get_followers(self):
+        followers = UserConnection.objects.filter(following=self)
+        return followers
+
+    def is_followed_by(self, user):
+        followers = UserConnection.objects.filter(following=self)
+        return followers.filter(creator=user).exists()
+
+
+class UserConnection(models.Model):
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    creator = models.ForeignKey(
+        InstaUser,
+        on_delete=models.CASCADE,
+        related_name="friendship_creator_set")
+    following = models.ForeignKey(
+        InstaUser,
+        on_delete=models.CASCADE,
+        related_name="friend_set")
+
+    def __str__(self):
+        return self.creator.username + ' follows ' + self.following.username
+
 
 class Post(models.Model):
     author = models.ForeignKey(
@@ -41,14 +68,14 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])
 
-    def __str__(self):
-        return self.title
-
     def get_like_count(self):
         return self.likes.count()
 
     def get_comment_count(self):
         return self.comments.count()
+
+    def __str__(self):
+        return self.title
 
 
 class Like(models.Model):
