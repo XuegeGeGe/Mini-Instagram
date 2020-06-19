@@ -13,7 +13,7 @@ def is_following(current_user, background_user):
 
 
 @register.simple_tag
-def has_user_liked_post(post, user):
+def has_user_liked_post(user, post):
     try:
         like = Like.objects.get(post=post, user=user)
         return "fa-heart"
