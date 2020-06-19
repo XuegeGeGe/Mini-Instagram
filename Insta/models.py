@@ -5,7 +5,6 @@ from imagekit.models import ProcessedImageField
 
 
 class InstaUser(AbstractUser):
-    email_address = models.TextField(blank=True, null=True)
     profile_pic = ProcessedImageField(
         upload_to='static/images/users',
         format='JPEG',
