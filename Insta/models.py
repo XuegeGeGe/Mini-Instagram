@@ -59,7 +59,7 @@ class Post(models.Model):
         blank=True,
         null=True
     )
-    posted_on = models.DateTimeField(
+    creation_time = models.DateTimeField(
         auto_now_add=True,
         editable=False,
     )
