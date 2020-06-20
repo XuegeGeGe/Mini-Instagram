@@ -85,7 +85,7 @@ class Like(models.Model):
         unique_together = ('post', 'user')
 
     def __str__(self):
-        return 'Like: ' + self.user.username + '->' + self.post.title
+        return 'Like: ' + (self.user.first_name if self.user.first_name else self.user.username) + '->' + self.post.title
 
 
 class Comment(models.Model):
