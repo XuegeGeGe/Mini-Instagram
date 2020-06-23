@@ -8,6 +8,7 @@
     * User profile page
         * shows a user's all posts
     * User interactions
+        * follow/un-follow
         * likes
         * comments
         
