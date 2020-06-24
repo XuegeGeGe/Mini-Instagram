@@ -61,7 +61,7 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 
 
 @ajax_request
-def addLike(request):
+def add_like(request):
     post_pk = request.POST.get('post_pk')
     post = Post.objects.get(pk=post_pk)
     try:
